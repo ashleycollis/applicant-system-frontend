@@ -1,6 +1,6 @@
 import React from 'react';
-import './App.css';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input } from 'react-bootstrap';
+import Navigation from '../../Navigation';
 
 function LogIn() {
   return (

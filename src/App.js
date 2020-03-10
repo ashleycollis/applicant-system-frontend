@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 // import "./App.css";
 import Forms from './Components/Forms';
+import Feed from './Components/Feed';
 import Submitted from './Components/Submitted';
 import { BrowserRouter, Route } from 'react-router-dom';
 // import "bootstrap/dist/css/boostrap.min.css";
@@ -16,6 +17,7 @@ class App extends Component {
           </div>
           <Route path="/form-create" component={Forms} />
           <Route path="/form-submitted" component={Submitted} />
+          <Route path="/feed" component={Feed} />
         </div>
       </BrowserRouter>
     );
