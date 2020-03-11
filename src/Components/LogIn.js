@@ -43,7 +43,7 @@ class LogIn extends Component {
         <button
           type="submit"
           className="btn btn-dark btn-lg btn-block"
-          onSubmit={this.handleSubmit}
+          onClick={this.handleSubmit}
         >
           Continue
         </button>

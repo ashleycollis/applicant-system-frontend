@@ -18,6 +18,7 @@ class Feed extends Component {
       return (
         <div class="applications">
           <ul>
+            //This is where I imagine short snippets for each student will go.
             {forms.map((form, index) => {
               return (
                 <li key={index}>
@@ -35,6 +36,10 @@ class Feed extends Component {
               );
             })}
           </ul>
+          {/* <Link to={'/students/form'}>
+            <button type="button">Add Student</button>
+          </Link> */}
+          //This is where i imagine the link to add form to go
         </div>
       );
     } else {
