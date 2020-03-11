@@ -1,21 +1,54 @@
-import React from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'react-bootstrap';
-import Navigation from '../../Navigation';
+import React, { Component } from 'react';
 
-function LogIn() {
-  return (
-    <Form className="login">
-      <h1 classname="title">Inclusion Admin Page</h1>
-      <h2>Sign In</h2>
-      <FormGroup>
-        <Label>Username</Label>
-        <Input type="username" placeholder="username"></Input>
-        <Label>Password</Label>
-        <Input type="password" placeholder="password"></Input>
-      </FormGroup>
-      <button className="btn-lg btn-dark btn-block"> Log In</button>
-    </Form>
-  );
+class LogIn extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      password: '',
+    };
+  }
+  handleSubmit = event => {
+    console.log('this.state');
+    console.log('submitted');
+  };
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+  render() {
+    return (
+      <form className="loginform">
+        <img src={require('../Images/inclusionlogo.png')} alt="logo" />
+        <h1 className="title">Admin Access </h1>
+        <h1 className="title">Sign In </h1>
+        <div className="fieldsgroup">
+          <div className="form-group">
+            <label>Username</label>
+            <input
+              type="username"
+              className="form-control form-control-lg"
+              placeholder="username"
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              className="form-control form-control-lg"
+              placeholder="password"
+            />
+          </div>
+        </div>
+        <button
+          type="submit"
+          className="btn btn-dark btn-lg btn-block"
+          onSubmit={this.handleSubmit}
+        >
+          Continue
+        </button>
+      </form>
+    );
+  }
 }
-
 export default LogIn;
