@@ -1,0 +1,37 @@
+body {
+  box-sizing: border-box;
+  background-color: white !important;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100vw;
+  height: 100vh;
+}
+
+.container {
+  /* width: 100vw;
+  height: 100vh; */
+  /* background-color: lightskyblue; */
+  margin: 0px;
+  padding: 0px;
+}
+
+h1 {
+  text-align: center;
+}
+
+h1,
+h2 {
+  margin: 20px 0px;
+  padding: 20px 0px;
+}
+
+/* Stylying NavBar */
+nav,
+.navbar {
+  width: 100vw;
+}
+
+/* Styling the Form */
+
+.form-label {
+  color: white;
+}

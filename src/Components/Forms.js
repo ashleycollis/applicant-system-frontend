@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Form, Button, FormControl, Row, Col, InputGroup } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  FormControl,
+  Row,
+  Col,
+  InputGroup
+} from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 //import Datepicker from "react-bootstrap-date-picker";
@@ -16,7 +23,7 @@ class Forms extends Component {
     city: "",
     state: "",
     zip: "",
-    birthdate: '',
+    birthdate: "",
     ethnicity: "",
     linkedin: "",
     github: "",
@@ -35,26 +42,26 @@ class Forms extends Component {
     skilllevel: "",
     redirect: false,
     startDate: new Date()
-  }
+  };
 
-  handleChange = (event) => {
+  handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-  }
+  };
 
-  handleCheckboxes = (event) => {
+  handleCheckboxes = event => {
     this.setState({ [event.target.name]: event.target.checked });
-  }
+  };
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault();
     this.setState({ redirect: true });
-  }
+  };
 
-  handleEthnicity = (event) => {
-    this.setState({ ethnicity: event.target.value })
-  }
+  handleEthnicity = event => {
+    this.setState({ ethnicity: event.target.value });
+  };
 
-  handleDate = (date) => {
+  handleDate = date => {
     let dbFriendlyDate = date.toISOString();
     this.setState({
       birthdate: dbFriendlyDate
@@ -62,32 +69,59 @@ class Forms extends Component {
   };
 
   render() {
-
     return (
       <div>
+        <h2>Application Form</h2>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="formBasicName">
             <Form.Label>Name:</Form.Label>
-            <Form.Control type="text" name="name" placeholder="Enter full name" value={this.state.name} onChange={this.handleChange} />
+            <Form.Control
+              type="text"
+              name="name"
+              placeholder="Enter full name"
+              value={this.state.name}
+              onChange={this.handleChange}
+            />
           </Form.Group>
           <Form.Group controlId="formBasicPhone">
             <Form.Label>Phone:</Form.Label>
-            <Form.Control type="phone" name="phone" placeholder="(XXX) XXX-XXXX" value={this.state.phone} onChange={this.handleChange} />
+            <Form.Control
+              type="phone"
+              name="phone"
+              placeholder="(XXX) XXX-XXXX"
+              value={this.state.phone}
+              onChange={this.handleChange}
+            />
           </Form.Group>
 
           <Form.Group controlId="formGridAddress1">
             <Form.Label>Address</Form.Label>
-            <Form.Control type="text" name="address" placeholder="Enter street address" value={this.state.address} onChange={this.handleChange} />
+            <Form.Control
+              type="text"
+              name="address"
+              placeholder="Enter street address"
+              value={this.state.address}
+              onChange={this.handleChange}
+            />
           </Form.Group>
 
           <Form.Row>
             <Form.Group as={Col} controlId="formGridCity">
               <Form.Label>City</Form.Label>
-              <Form.Control name="city" value={this.state.city} onChange={this.handleChange} />
+              <Form.Control
+                name="city"
+                value={this.state.city}
+                onChange={this.handleChange}
+              />
             </Form.Group>
             <Form.Group as={Col} controlId="formGridState">
               <Form.Label>State</Form.Label>
-              <Form.Control as="select" name="state" value={this.state.state} onChange={this.handleChange}>
+              <Form.Control
+                as="select"
+                name="state"
+                value={this.state.state}
+                onChange={this.handleChange}
+              >
                 <option>Choose...</option>
                 <option>CT</option>
                 <option>NJ</option>
@@ -96,7 +130,11 @@ class Forms extends Component {
             </Form.Group>
             <Form.Group as={Col} controlId="formGridZip">
               <Form.Label>Zip</Form.Label>
-              <Form.Control name="zip" value={this.state.zip} onChange={this.handleChange} />
+              <Form.Control
+                name="zip"
+                value={this.state.zip}
+                onChange={this.handleChange}
+              />
             </Form.Group>
           </Form.Row>
           <Form.Group controlId="formBirthday">
@@ -149,54 +187,113 @@ class Forms extends Component {
           </fieldset>
           <Form.Group controlId="formLinkedin">
             <Form.Label>Linked In:</Form.Label>
-            <Form.Control type="url" placeholder="Enter your LinkedIn url" name="linkedin" value={this.state.linkedin} onChange={this.handleChange} />
+            <Form.Control
+              type="url"
+              placeholder="Enter your LinkedIn url"
+              name="linkedin"
+              value={this.state.linkedin}
+              onChange={this.handleChange}
+            />
           </Form.Group>
           <Form.Group controlId="formGitHub">
             <Form.Label>GitHub:</Form.Label>
-            <Form.Control type="url" placeholder="Enter your GitHub url" name="github" value={this.state.github} onChange={this.handleChange} />
+            <Form.Control
+              type="url"
+              placeholder="Enter your GitHub url"
+              name="github"
+              value={this.state.github}
+              onChange={this.handleChange}
+            />
           </Form.Group>
           <Form.Group controlId="formExtralink">
             <Form.Label>Personal Website:</Form.Label>
-            <Form.Control type="url" placeholder="Enter your personal website url" name="extralink" value={this.state.extralink} onChange={this.handleChange} />
+            <Form.Control
+              type="url"
+              placeholder="Enter your personal website url"
+              name="extralink"
+              value={this.state.extralink}
+              onChange={this.handleChange}
+            />
           </Form.Group>
           <InputGroup>
             <InputGroup.Prepend>
               <InputGroup.Text>Cover Letter: </InputGroup.Text>
             </InputGroup.Prepend>
-            <FormControl name="coverletter" value={this.state.coverletter} onChange={this.handleChange} as="textarea" aria-label="With textarea" />
+            <FormControl
+              name="coverletter"
+              value={this.state.coverletter}
+              onChange={this.handleChange}
+              as="textarea"
+              aria-label="With textarea"
+            />
           </InputGroup>
           <Form.Row>
             <Form.Group as={Col} controlId="formGridEducation">
               <Form.Label>Degree: </Form.Label>
-              <Form.Control placeholder="Enter your highest degree" name="education" value={this.state.education} onChange={this.handleChange} />
+              <Form.Control
+                placeholder="Enter your highest degree"
+                name="education"
+                value={this.state.education}
+                onChange={this.handleChange}
+              />
             </Form.Group>
             <Form.Group as={Col} controlId="formGridMajor">
               <Form.Label>Major: </Form.Label>
-              <Form.Control placeholder="Enter your major" name="collegemajor" value={this.state.collegemajor} onChange={this.handleChange} />
+              <Form.Control
+                placeholder="Enter your major"
+                name="collegemajor"
+                value={this.state.collegemajor}
+                onChange={this.handleChange}
+              />
             </Form.Group>
             <Form.Group as={Col} controlId="formGridCollege">
               <Form.Label>University: </Form.Label>
-              <Form.Control placeholder="Enter your University/College" name="collegelocation" value={this.state.collegelocation} onChange={this.handleChange} />
+              <Form.Control
+                placeholder="Enter your University/College"
+                name="collegelocation"
+                value={this.state.collegelocation}
+                onChange={this.handleChange}
+              />
             </Form.Group>
           </Form.Row>
           <Form.Row>
             <Form.Group as={Col} controlId="formIsEmployed">
               <Col sm={{ span: 10, offset: 2 }}>
-                <Form.Check label="Employed?" name="isemployed" value={this.state.isemployed} onChange={this.handleCheckboxes} />
+                <Form.Check
+                  label="Employed?"
+                  name="isemployed"
+                  value={this.state.isemployed}
+                  onChange={this.handleCheckboxes}
+                />
               </Col>
             </Form.Group>
             <Form.Group as={Col} controlId="formEmployer">
               <Form.Label>Employer: </Form.Label>
-              <Form.Control placeholder="Enter your employer" name="employer" value={this.state.employer} onChange={this.handleChange} />
+              <Form.Control
+                placeholder="Enter your employer"
+                name="employer"
+                value={this.state.employer}
+                onChange={this.handleChange}
+              />
             </Form.Group>
             <Form.Group as={Col} controlId="formIsVeteran">
               <Col sm={{ span: 10, offset: 2 }}>
-                <Form.Check label="Veteran?" name="military" value={this.state.military} onChange={this.handleCheckboxes} />
+                <Form.Check
+                  label="Veteran?"
+                  name="military"
+                  value={this.state.military}
+                  onChange={this.handleCheckboxes}
+                />
               </Col>
             </Form.Group>
             <Form.Group as={Col} controlId="formIncome">
               <Form.Label>Income: </Form.Label>
-              <Form.Control as="select" name="income" value={this.state.income} onChange={this.handleChange}>
+              <Form.Control
+                as="select"
+                name="income"
+                value={this.state.income}
+                onChange={this.handleChange}
+              >
                 <option>Choose...</option>
                 <option>Under $30,000</option>
                 <option>$30,001 - $65,000</option>
@@ -211,7 +308,12 @@ class Forms extends Component {
                 Do you own a laptop?
               </Form.Label>
               <Col sm={10}>
-                <Form.Check label="Do you have a laptop?" name="laptop" value={this.state.military} onChange={this.handleCheckboxes} />
+                <Form.Check
+                  label="Do you have a laptop?"
+                  name="laptop"
+                  value={this.state.military}
+                  onChange={this.handleCheckboxes}
+                />
               </Col>
             </Form.Group>
           </fieldset>
@@ -219,16 +321,33 @@ class Forms extends Component {
             <InputGroup.Prepend>
               <InputGroup.Text>Why did you choose Inclusion: </InputGroup.Text>
             </InputGroup.Prepend>
-            <FormControl as="textarea" aria-label="With textarea" label="Veteran?" name="whyinterested" value={this.state.whyinterested} onChange={this.handleChange} />
+            <FormControl
+              as="textarea"
+              aria-label="With textarea"
+              label="Veteran?"
+              name="whyinterested"
+              value={this.state.whyinterested}
+              onChange={this.handleChange}
+            />
           </InputGroup>
           <Form.Group controlId="formHowHeard">
             <Form.Label>How did you hear about Inclusion?</Form.Label>
-            <Form.Control placeholder="Enter your source" name="howheard" value={this.state.howheard} onChange={this.handleChange} />
+            <Form.Control
+              placeholder="Enter your source"
+              name="howheard"
+              value={this.state.howheard}
+              onChange={this.handleChange}
+            />
           </Form.Group>
 
           <Form.Group controlId="formSkillLevel">
             <Form.Label>Skill Level: </Form.Label>
-            <Form.Control as="select" name="skilllevel" value={this.state.skilllevel} onChange={this.handleChange}>
+            <Form.Control
+              as="select"
+              name="skilllevel"
+              value={this.state.skilllevel}
+              onChange={this.handleChange}
+            >
               <option>Choose...</option>
               <option>Beginner</option>
               <option>Mid-level</option>
