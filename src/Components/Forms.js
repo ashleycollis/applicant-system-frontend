@@ -17,6 +17,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 class Forms extends Component {
   state = {
+    cohort_nickname: "",
     name: "",
     phone: "",
     address: "",
@@ -40,8 +41,11 @@ class Forms extends Component {
     whyinterested: "",
     howheard: "",
     skilllevel: "",
+    status: "",
+    reviewer_comments: "",
     redirect: false,
-    startDate: new Date()
+    startDate: new Date(),
+    isPublished: false
   };
 
   handleChange = event => {
@@ -353,6 +357,41 @@ class Forms extends Component {
               <option>Mid-level</option>
               <option>Advanced</option>
             </Form.Control>
+          </Form.Group>
+          <Form.Group controlId="formStatus">
+            <Form.Label>Status: </Form.Label>
+            <Form.Control
+              as="select"
+              name="status"
+              value={this.state.status}
+              onChange={this.handleChange}
+            >
+              <option>Choose...</option>
+              <option>Under Review</option>
+              <option>Approved</option>
+              <option>Rejected</option>
+            </Form.Control>
+            <InputGroup>
+              <InputGroup.Prepend>
+                <InputGroup.Text>Reviewer's comments: </InputGroup.Text>
+              </InputGroup.Prepend>
+              <FormControl
+                name="reviewers_comment"
+                value={this.state.reviewer_comments}
+                onChange={this.handleChange}
+                as="textarea"
+                aria-label="With textarea"
+              />
+            </InputGroup>
+          </Form.Group>
+          <Form.Group as={Col} controlId="formcohortNickname">
+            <Form.Label>Cohort: </Form.Label>
+            <Form.Control
+              placeholder="Enter your cohort"
+              name="cohort"
+              value={this.state.cohort_nickname}
+              onChange={this.handleChange}
+            />
           </Form.Group>
           <Button variant="primary" type="submit">
             Submit
