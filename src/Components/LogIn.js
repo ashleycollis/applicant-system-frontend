@@ -20,6 +20,8 @@ class LogIn extends Component {
       this.state.password === this.state.correctPassword
     ) {
       this.setState({ redirect: true });
+    } else {
+      alert('You have entered the wrong password. Try agan. ');
     }
   };
   handleChange = event => {
@@ -34,7 +36,7 @@ class LogIn extends Component {
       return <Redirect to={{ pathname: '/feed' }} />;
     }
     return (
-      <form className="loginform" onClick={this.handleSubmit}>
+      <form className="loginform">
         <img src={require('../Images/inclusionlogo.png')} alt="logo" />
         <h1 className="title">Admin Access </h1>
         <h1 className="title">Sign In </h1>
@@ -61,7 +63,11 @@ class LogIn extends Component {
             />
           </div>
         </div>
-        <button type="submit" className="btn btn-dark btn-lg btn-block">
+        <button
+          type="submit"
+          className="btn btn-dark btn-lg btn-block"
+          onClick={this.handleSubmit}
+        >
           Continue
         </button>
       </form>

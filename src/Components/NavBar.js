@@ -19,7 +19,7 @@ class NavBar extends Component {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Nav.Link href="#">Applicant</Nav.Link>
-          <Nav.Link href="#">Admin</Nav.Link>
+          <Nav.Link href="/login">Admin</Nav.Link>
         </Navbar.Collapse>
       </Navbar>
     );
