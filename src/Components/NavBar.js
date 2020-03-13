@@ -1,8 +1,7 @@
-import React, { Component } from "react";
-import Navbar from "react-bootstrap/Navbar";
+import React, { Component } from 'react';
+import Navbar from 'react-bootstrap/Navbar';
 // import Button from "react-bootstrap/Button";
-import { Browser, Route, Link } from "react-router-dom";
-import { Nav } from "react-bootstrap";
+import { Nav } from 'react-bootstrap';
 
 class NavBar extends Component {
   render() {
