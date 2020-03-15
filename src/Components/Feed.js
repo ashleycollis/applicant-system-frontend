@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
+import ApplicantRow from './ApplicantRow';
 
 class Feed extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      forms: [],
-    };
-  }
+  state = {
+    forms: [],
+  };
   async componentDidMount() {
-    //this is where API calls to grab forms will go
+    const { forms } = await axios.get('http://localhost:3000/applications/');
+    console.log('these are the:', forms);
   }
   render() {
     let forms = this.state.forms;
@@ -43,7 +43,18 @@ class Feed extends Component {
         </div>
       );
     } else {
-      return <p>There have been no applications submitted at this time. </p>;
+      return (
+        <div class="empty-page">
+          <p>There have been no applications submitted at this time. </p>
+          <p>
+            {' '}
+            Perhaps, you would like to generate a new application to send out.{' '}
+          </p>
+          <button type="button" class="btn-success btn-lg btn">
+            Generate
+          </button>
+        </div>
+      );
     }
   }
 }
