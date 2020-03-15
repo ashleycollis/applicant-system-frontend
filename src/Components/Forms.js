@@ -9,45 +9,51 @@ import {
 } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import axios from "axios";
 //import Datepicker from "react-bootstrap-date-picker";
 // import ControlLabel from "react-bootstrap/InputGroup";
 // import FormCheck from "react-bootstrap/FormCheck";
 // import ControlLabel from "react-bootstrap/lib/ControlLabel";
-// import { Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import { withRouter } from "react-router";
+import Submitted from "./SubmittedForm";
 
 class Forms extends Component {
-  state = {
-    cohort_nickname: "",
-    name: "",
-    phone: "",
-    address: "",
-    city: "",
-    state: "",
-    zip: "",
-    birthdate: "",
-    ethnicity: "",
-    linkedin: "",
-    github: "",
-    extralink: "",
-    coverletter: "",
-    education: "",
-    collegemajor: "",
-    collegelocation: "",
-    isemployed: false,
-    employer: "",
-    military: false,
-    income: "",
-    laptop: false,
-    whyinterested: "",
-    howheard: "",
-    skilllevel: "",
-    status: "",
-    reviewer_comments: "",
-    redirect: false,
-    startDate: new Date(),
-    isPublished: false
-  };
-
+  constructor() {
+    super();
+    this.state = {
+      cohort_id: "",
+      name: "",
+      email: "",
+      phone: "",
+      address: "",
+      city: "",
+      state: "",
+      zip: "",
+      birth_date: "",
+      gender: "",
+      ethnicity: "",
+      linkedin: "",
+      github: "",
+      extra_link: "",
+      cover_letter: "",
+      highest_degree: "",
+      college_major: "",
+      college_location: "",
+      is_employed: "",
+      employer: "",
+      is_military: "",
+      income: "",
+      has_laptop: "",
+      why_interested: "",
+      how_heard: "",
+      skill_level: "",
+      app_status: "",
+      reviewer_comments: "",
+      redirect: false
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -56,10 +62,17 @@ class Forms extends Component {
     this.setState({ [event.target.name]: event.target.checked });
   };
 
-  handleSubmit = event => {
+  async handleSubmit(event) {
     event.preventDefault();
-    this.setState({ redirect: true });
-  };
+    const applicantData = this.setState({ redirect: true });
+    const newData = await axios.post(
+      "http://localhost:3000/applications",
+      applicantData
+    );
+    console.log(newData.data);
+    this.props.history.push("/submitted");
+    return <Redirect to="/submitted" />;
+  }
 
   handleEthnicity = event => {
     this.setState({ ethnicity: event.target.value });
@@ -84,6 +97,16 @@ class Forms extends Component {
               name="name"
               placeholder="Enter full name"
               value={this.state.name}
+              onChange={this.handleChange}
+            />
+          </Form.Group>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email:</Form.Label>
+            <Form.Control
+              type="email"
+              name="email"
+              placeholder="Enter email address"
+              value={this.state.email}
               onChange={this.handleChange}
             />
           </Form.Group>
@@ -141,15 +164,34 @@ class Forms extends Component {
               />
             </Form.Group>
           </Form.Row>
-          <Form.Group controlId="formBirthday">
-            <Form.Label>Birthdate: </Form.Label>
-            <DatePicker
-              selected={this.state.startDate}
-              onChange={this.handleDate}
-            />
-          </Form.Group>
+          <Form.Row>
+            <Form.Group controlId="formBirthday">
+              <Form.Label>Birthdate: </Form.Label>
+
+              <DatePicker
+                name="birth_date"
+                selected={this.state.birth_date}
+                onChange={this.handleDate}
+              />
+            </Form.Group>
+            <Form.Group as={Col} controlId="formGridGender">
+              <Form.Label>Gender: </Form.Label>
+              <Form.Control
+                as="select"
+                name="gender"
+                value={this.state.gender}
+                onChange={this.handleChange}
+              >
+                <option>Choose...</option>
+                <option>Female</option>
+                <option>Male</option>
+                <option>Binary</option>
+                <option>Other</option>
+              </Form.Control>
+            </Form.Group>
+          </Form.Row>
           <fieldset>
-            <Form.Group as={Row} controlId="formEthinicity">
+            <Form.Group as={Row} controlId="formEthnicity">
               <Form.Label as="legend" column sm={2}>
                 Ethnicity:
               </Form.Label>
@@ -214,8 +256,8 @@ class Forms extends Component {
             <Form.Control
               type="url"
               placeholder="Enter your personal website url"
-              name="extralink"
-              value={this.state.extralink}
+              name="extra_link"
+              value={this.state.extra_link}
               onChange={this.handleChange}
             />
           </Form.Group>
@@ -224,8 +266,8 @@ class Forms extends Component {
               <InputGroup.Text>Cover Letter: </InputGroup.Text>
             </InputGroup.Prepend>
             <FormControl
-              name="coverletter"
-              value={this.state.coverletter}
+              name="cover_letter"
+              value={this.state.cover_letter}
               onChange={this.handleChange}
               as="textarea"
               aria-label="With textarea"
@@ -236,8 +278,8 @@ class Forms extends Component {
               <Form.Label>Degree: </Form.Label>
               <Form.Control
                 placeholder="Enter your highest degree"
-                name="education"
-                value={this.state.education}
+                name="highest_degree"
+                value={this.state.highest_degree}
                 onChange={this.handleChange}
               />
             </Form.Group>
@@ -245,8 +287,8 @@ class Forms extends Component {
               <Form.Label>Major: </Form.Label>
               <Form.Control
                 placeholder="Enter your major"
-                name="collegemajor"
-                value={this.state.collegemajor}
+                name="college_major"
+                value={this.state.college_major}
                 onChange={this.handleChange}
               />
             </Form.Group>
@@ -254,8 +296,8 @@ class Forms extends Component {
               <Form.Label>University: </Form.Label>
               <Form.Control
                 placeholder="Enter your University/College"
-                name="collegelocation"
-                value={this.state.collegelocation}
+                name="college_location"
+                value={this.state.college_location}
                 onChange={this.handleChange}
               />
             </Form.Group>
@@ -265,8 +307,8 @@ class Forms extends Component {
               <Col sm={{ span: 10, offset: 2 }}>
                 <Form.Check
                   label="Employed?"
-                  name="isemployed"
-                  value={this.state.isemployed}
+                  name="is_employed"
+                  value={this.state.is_employed}
                   onChange={this.handleCheckboxes}
                 />
               </Col>
@@ -284,8 +326,8 @@ class Forms extends Component {
               <Col sm={{ span: 10, offset: 2 }}>
                 <Form.Check
                   label="Veteran?"
-                  name="military"
-                  value={this.state.military}
+                  name="is_military"
+                  value={this.state.is_military}
                   onChange={this.handleCheckboxes}
                 />
               </Col>
@@ -313,9 +355,9 @@ class Forms extends Component {
               </Form.Label>
               <Col sm={10}>
                 <Form.Check
-                  label="Do you have a laptop?"
-                  name="laptop"
-                  value={this.state.military}
+                  label="Yes"
+                  name="has_laptop"
+                  value={this.state.has_laptop}
                   onChange={this.handleCheckboxes}
                 />
               </Col>
@@ -329,8 +371,8 @@ class Forms extends Component {
               as="textarea"
               aria-label="With textarea"
               label="Veteran?"
-              name="whyinterested"
-              value={this.state.whyinterested}
+              name="why_interested"
+              value={this.state.why_interested}
               onChange={this.handleChange}
             />
           </InputGroup>
@@ -338,8 +380,8 @@ class Forms extends Component {
             <Form.Label>How did you hear about Inclusion?</Form.Label>
             <Form.Control
               placeholder="Enter your source"
-              name="howheard"
-              value={this.state.howheard}
+              name="how_heard"
+              value={this.state.how_heard}
               onChange={this.handleChange}
             />
           </Form.Group>
@@ -348,8 +390,8 @@ class Forms extends Component {
             <Form.Label>Skill Level: </Form.Label>
             <Form.Control
               as="select"
-              name="skilllevel"
-              value={this.state.skilllevel}
+              name="skill_level"
+              value={this.state.skill_level}
               onChange={this.handleChange}
             >
               <option>Choose...</option>
@@ -358,7 +400,7 @@ class Forms extends Component {
               <option>Advanced</option>
             </Form.Control>
           </Form.Group>
-          <Form.Group controlId="formStatus">
+          {/* <Form.Group controlId="formStatus">
             <Form.Label>Status: </Form.Label>
             <Form.Control
               as="select"
@@ -383,16 +425,7 @@ class Forms extends Component {
                 aria-label="With textarea"
               />
             </InputGroup>
-          </Form.Group>
-          <Form.Group as={Col} controlId="formcohortNickname">
-            <Form.Label>Cohort: </Form.Label>
-            <Form.Control
-              placeholder="Enter your cohort"
-              name="cohort"
-              value={this.state.cohort_nickname}
-              onChange={this.handleChange}
-            />
-          </Form.Group>
+          </Form.Group> */}
           <Button variant="primary" type="submit">
             Submit
           </Button>
@@ -401,4 +434,4 @@ class Forms extends Component {
     );
   }
 }
-export default Forms;
+export default withRouter(Forms);

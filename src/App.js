@@ -6,7 +6,7 @@ import Forms from "./Components/Forms";
 // import "bootstrap/dist/css/boostrap.min.css";
 import LogIn from "./Components/LogIn";
 import Feed from "./Components/Feed";
-// import Submitted from './Components/Submitted';
+import Submitted from "./Components/SubmittedForm";
 import { BrowserRouter, Route } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
@@ -20,7 +20,7 @@ class App extends Component {
             <h1>Applicant Management System</h1>
           </div>
           <Route path="/form-create" component={Forms} />
-          {/* <Route path="/form-submitted" component={Submitted} /> */}
+          <Route path="/submitted" component={Submitted} />
           <Route path="/feed" component={Feed} />
           <Route path="/login" component={LogIn} />
         </div>
