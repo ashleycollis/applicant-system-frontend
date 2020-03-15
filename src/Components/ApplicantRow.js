@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 class ApplicantRow extends Component {
   constructor(props) {
@@ -7,6 +8,10 @@ class ApplicantRow extends Component {
     this.state = {};
     this.handleClick = this.handleClick.bind(this);
   }
+  async componentDidMount() {
+    const { data } = await axios.get('http://localhost:3000/applications/');
+  }
+
   handleClick(e) {
     e.preventDefault();
     console.log("You would be on the particular applicant's form page");

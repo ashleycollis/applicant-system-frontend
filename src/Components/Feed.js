@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import ApplicantRow from './ApplicantRow';
 
 class Feed extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      forms: [],
-    };
-  }
+  state = {
+    forms: [],
+  };
   async componentDidMount() {
-    //this is where API calls to grab forms will go
+    const { forms } = await axios.get('http://localhost:3000/applications/');
+    console.log('these are the:', forms);
   }
   render() {
     let forms = this.state.forms;

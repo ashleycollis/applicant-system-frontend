@@ -2,16 +2,13 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
 class LogIn extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      password: '',
-      correctUsername: 'admin',
-      correctPassword: 'ilovecats',
-      redirect: false,
-    };
-  }
+  state = {
+    username: '',
+    password: '',
+    correctUsername: 'admin',
+    correctPassword: 'ilovecats',
+    redirect: false,
+  };
 
   handleSubmit = event => {
     event.preventDefault();
