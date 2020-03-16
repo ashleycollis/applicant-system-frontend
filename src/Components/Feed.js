@@ -14,7 +14,6 @@ class Feed extends Component {
   }
   render() {
     let { forms } = this.state;
-    console.log('these are the', forms);
     if (forms.length) {
       return (
         <div className="applications">

@@ -10,7 +10,6 @@ class ApplicantRow extends Component {
     const { data } = await axios.get(
       `http://localhost:3000/applications/${this.props.id}`
     );
-    console.log('this students data object, data');
     this.setState({
       applicantObj: data,
     });
@@ -18,8 +17,7 @@ class ApplicantRow extends Component {
 
   handleClick(e) {
     e.preventDefault();
-    console.log("You would be on the particular applicant's form page");
-    //redirect link here
+    console.log('Need to add a call to edit reviewer comments and app status');
   }
   render() {
     const { name, reviewer_comments, app_status, id } = this.state.applicantObj;

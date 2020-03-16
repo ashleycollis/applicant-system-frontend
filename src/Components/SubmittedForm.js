@@ -6,11 +6,10 @@ class SubmittedForm extends Component {
   };
   async componentDidMount() {
     const applicantId = this.props.match.params.id;
-    console.log(applicantId, 'here');
+
     const { data } = await axios.get(
       `http://localhost:3000/applications/${applicantId}`
     );
-    console.log('this students data object', data);
     this.setState({
       applicantObj: data,
     });
