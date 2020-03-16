@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ApplicantRow from './ApplicantRow';
+import { Table, TableCell, TableHead, TableRow } from '@material-ui/core';
 
 class Feed extends Component {
   state = {
@@ -16,21 +17,30 @@ class Feed extends Component {
     let { forms } = this.state;
     if (forms.length) {
       return (
-        <div className="applications">
-          <ul>
-            {forms.map((form, index) => {
-              return (
-                <ApplicantRow
-                  key={form.id}
-                  id={form.id}
-                  name={form.name}
-                  status={form.app_status}
-                  comments={form.reviewer_comments}
-                />
-              );
-            })}
-          </ul>
-        </div>
+        <Table className="applications">
+          <TableHead>
+            <TableRow>
+              <TableCell>Name</TableCell>
+
+              <TableCell>Application Status</TableCell>
+
+              <TableCell>Reviewer Comments</TableCell>
+
+              <TableCell>Application View</TableCell>
+            </TableRow>
+          </TableHead>
+          {forms.map((form, index) => {
+            return (
+              <ApplicantRow
+                key={form.id}
+                id={form.id}
+                name={form.name}
+                status={form.app_status}
+                comments={form.reviewer_comments}
+              />
+            );
+          })}
+        </Table>
       );
     } else {
       return (

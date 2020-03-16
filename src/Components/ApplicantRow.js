@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { TableRow, TableCell } from '@material-ui/core';
 
 class ApplicantRow extends Component {
   state = {
@@ -22,16 +23,16 @@ class ApplicantRow extends Component {
   render() {
     const { name, reviewer_comments, app_status, id } = this.state.applicantObj;
     return (
-      <div className="applicant-row" key={id}>
-        <div className="applicant-column">Name: {name}</div>
-        <div className="applicant-column">Status: {app_status}</div>
-        <div className="applicant-column">Comments: {reviewer_comments}</div>
-        <div className="applicant-column">
+      <TableRow className="applicant-row" key={id}>
+        <TableCell className="applicant-column">{name}</TableCell>
+        <TableCell className="applicant-column"> {app_status}</TableCell>
+        <TableCell className="applicant-column">{reviewer_comments}</TableCell>
+        <TableCell className="applicant-column">
           <Link to={`/applicants/${id}`}>
             <button type="button">View Application</button>
           </Link>
-        </div>
-      </div>
+        </TableCell>
+      </TableRow>
     );
   }
 }
