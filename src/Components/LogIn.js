@@ -2,16 +2,13 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
 class LogIn extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      password: '',
-      correctUsername: 'admin',
-      correctPassword: 'ilovecats',
-      redirect: false,
-    };
-  }
+  state = {
+    username: '',
+    password: '',
+    correctUsername: 'admin',
+    correctPassword: 'ilovecats',
+    redirect: false,
+  };
 
   handleSubmit = event => {
     event.preventDefault();
@@ -20,13 +17,14 @@ class LogIn extends Component {
       this.state.password === this.state.correctPassword
     ) {
       this.setState({ redirect: true });
+    } else {
+      alert('You have entered the wrong password. Try agan. ');
     }
   };
   handleChange = event => {
     this.setState({
       [event.target.name]: event.target.value,
     });
-    console.log(this.state);
   };
   render() {
     const { redirect } = this.state;
@@ -34,7 +32,7 @@ class LogIn extends Component {
       return <Redirect to={{ pathname: '/feed' }} />;
     }
     return (
-      <form className="loginform" onClick={this.handleSubmit}>
+      <form className="loginform">
         <img src={require('../Images/inclusionlogo.png')} alt="logo" />
         <h1 className="title">Admin Access </h1>
         <h1 className="title">Sign In </h1>
@@ -61,7 +59,11 @@ class LogIn extends Component {
             />
           </div>
         </div>
-        <button type="submit" className="btn btn-dark btn-lg btn-block">
+        <button
+          type="submit"
+          className="btn btn-dark btn-lg btn-block"
+          onClick={this.handleSubmit}
+        >
           Continue
         </button>
       </form>

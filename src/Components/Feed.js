@@ -1,49 +1,60 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import ApplicantRow from './ApplicantRow';
+import { Table, TableCell, TableHead, TableRow } from '@material-ui/core';
 
 class Feed extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      forms: [],
-    };
-  }
+  state = {
+    forms: [],
+  };
   async componentDidMount() {
-    //this is where API calls to grab forms will go
+    const { data } = await axios.get('http://localhost:3000/applications/');
+    this.setState({
+      forms: data,
+    });
   }
   render() {
-    let forms = this.state.forms;
-
+    let { forms } = this.state;
     if (forms.length) {
       return (
-        <div class="applications">
-          <ul>
-            {/* This is where I imagine short snippets for each student will go. */}
-            {forms.map((form, index) => {
-              return (
-                <li key={index}>
-                  {form.name}
-                  <br></br>
-                  <img
-                    className="student-image"
-                    alt="icon"
-                    src="./images/student"
-                  />
-                  <Link to={`/forms/${index}`}>
-                    <button type="button">Select</button>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-          {/* <Link to={'/students/form'}>
-            <button type="button">Add Student</button>
-          </Link> */}
-          {/* This is where i imagine the link to add form to go */}
-        </div>
+        <Table className="applications">
+          <TableHead>
+            <TableRow>
+              <TableCell>Name</TableCell>
+
+              <TableCell>Application Status</TableCell>
+
+              <TableCell>Reviewer Comments</TableCell>
+
+              <TableCell>Application View</TableCell>
+            </TableRow>
+          </TableHead>
+          {forms.map((form, index) => {
+            return (
+              <ApplicantRow
+                key={form.id}
+                id={form.id}
+                name={form.name}
+                status={form.app_status}
+                comments={form.reviewer_comments}
+              />
+            );
+          })}
+        </Table>
       );
     } else {
-      return <p>There have been no applications submitted at this time. </p>;
+      return (
+        <div className="empty-page">
+          <p>There have been no applications submitted at this time. </p>
+          <p>
+            {' '}
+            Perhaps, you would like to generate a new application to send out.{' '}
+          </p>
+          <button type="button" className="btn-success btn-lg btn">
+            Generate
+          </button>
+        </div>
+      );
     }
   }
 }
