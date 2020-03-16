@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import NavBar from './Components/NavBar';
 import Forms from './Components/Forms';
@@ -7,7 +6,6 @@ import Feed from './Components/Feed';
 import SubmittedForm from './Components/SubmittedForm';
 import { BrowserRouter, Route } from 'react-router-dom';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-
 
 class App extends Component {
   render() {
@@ -20,9 +18,6 @@ class App extends Component {
           </div>
           <Route path="/login" component={LogIn} />
           <Route path="/form-create" component={Forms} />
-
-          <Route path="/submitted" component={Submitted} />
-          <Route path="/form-submitted" component={SubmittedForm} />
           <Route path="/feed" component={Feed} />
           <Route path="/applicants/:id" component={SubmittedForm} />
         </div>
