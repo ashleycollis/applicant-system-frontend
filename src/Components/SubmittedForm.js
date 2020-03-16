@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
-
+import axios from 'axios';
 class SubmittedForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      student: '',
-    };
+  state = {
+    studentObj: '',
+  };
+  async componentDidMount() {
+    const applicantId = this.props.match.params.id;
+    const { data } = await axios.get(
+      `http://localhost:3000/applications/${applicantId}`
+    );
+    console.log('this students data object', data);
+    this.setState({
+      applicantObj: data,
+    });
   }
-  componentDidMount() {
-    /**API call or method to grab student information */
+  render() {
+    return <p>{this.state.studentObj}</p>;
   }
 }
 

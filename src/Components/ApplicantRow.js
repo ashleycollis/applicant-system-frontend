@@ -5,9 +5,6 @@ import axios from 'axios';
 class ApplicantRow extends Component {
   state = {
     applicantObj: {},
-    name: this.props.name,
-    status: this.props.status,
-    comments: this.props.comments,
   };
   async componentDidMount() {
     const { data } = await axios.get(
@@ -25,14 +22,18 @@ class ApplicantRow extends Component {
     //redirect link here
   }
   render() {
-    const { name, comments, status, index, applicantObj } = this.state;
+    const { name, reviewer_comments, app_status, id } = this.state.applicantObj;
     return (
-      <li>
-        Name: {name}
-        <img className="student-image" alt="icon" src="./images/student" />
-        <Link to={`/forms/${index}`}></Link>
-        <button type="button">Select</button>
-      </li>
+      <div className="applicant-row" key={id}>
+        <div className="applicant-column">Name: {name}</div>
+        <div className="applicant-column">Status: {app_status}</div>
+        <div className="applicant-column">Comments: {reviewer_comments}</div>
+        <div className="applicant-column">
+          <Link to={`/applicants/${id}`}>
+            <button type="button">View Application</button>
+          </Link>
+        </div>
+      </div>
     );
   }
 }
