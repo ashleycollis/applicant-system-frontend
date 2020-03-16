@@ -1,8 +1,7 @@
-import React, { Component } from "react";
-import Navbar from "react-bootstrap/Navbar";
+import React, { Component } from 'react';
+import Navbar from 'react-bootstrap/Navbar';
 // import Button from "react-bootstrap/Button";
-import { Browser, Route, Link } from "react-router-dom";
-import { Nav } from "react-bootstrap";
+import { Nav } from 'react-bootstrap';
 
 class NavBar extends Component {
   render() {
@@ -20,7 +19,7 @@ class NavBar extends Component {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Nav.Link href="#">Applicant</Nav.Link>
-          <Nav.Link href="#">Admin</Nav.Link>
+          <Nav.Link href="/login">Admin</Nav.Link>
         </Navbar.Collapse>
       </Navbar>
     );
