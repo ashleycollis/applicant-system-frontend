@@ -3,13 +3,20 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 class ApplicantRow extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-    this.handleClick = this.handleClick.bind(this);
-  }
+  state = {
+    applicantObj: {},
+    name: this.props.name,
+    status: this.props.status,
+    comments: this.props.comments,
+  };
   async componentDidMount() {
-    const { data } = await axios.get('http://localhost:3000/applications/');
+    const { data } = await axios.get(
+      `http://localhost:3000/applications/${this.props.id}`
+    );
+    console.log('this students data object, data');
+    this.setState({
+      applicantObj: data,
+    });
   }
 
   handleClick(e) {
@@ -18,10 +25,14 @@ class ApplicantRow extends Component {
     //redirect link here
   }
   render() {
+    const { name, comments, status, index, applicantObj } = this.state;
     return (
-      <div class="row">
-        <button> View Application </button>
-      </div>
+      <li>
+        Name: {name}
+        <img className="student-image" alt="icon" src="./images/student" />
+        <Link to={`/forms/${index}`}></Link>
+        <button type="button">Select</button>
+      </li>
     );
   }
 }
