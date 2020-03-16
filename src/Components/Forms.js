@@ -16,7 +16,7 @@ import axios from "axios";
 // import ControlLabel from "react-bootstrap/lib/ControlLabel";
 import { Redirect } from "react-router-dom";
 import { withRouter } from "react-router";
-import Submitted from "./SubmittedForm";
+// import ApplicantRecap from "./ApplicantRecap";
 
 class Forms extends Component {
   constructor() {
@@ -71,12 +71,12 @@ class Forms extends Component {
       applicantData
     );
     console.log(newData.data);
-    this.props.history.push("/submitted");
+    this.props.history.push("/recap");
 
     return (
       <Redirect
         to={{
-          pathname: "/submitted",
+          pathname: "/recap",
           state: { id: newData.data.id }
         }}
       />
