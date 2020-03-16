@@ -1,48 +1,113 @@
 import React, { Component } from 'react';
-
-//planning on the object representing the particular student being passed down
-
-//dummy data:
-
-let state = {
-  cohort: 1,
-  name: 'John Cena',
-  phone: '9175393093',
-  address: '3230 Steuben Ave, apt G3',
-  city: 'Bronx',
-  state: 'NY',
-  zip: '10467',
-  birthdate: new Date('21 Apr 1985 10:10:00 GMT-0400'),
-  gender: 'Male',
-  ethnicity: 'Hispanic',
-  linkedin: 'https://google.com',
-  github: 'https://github.com/Thatjohn',
-  extralink: 'https://twitter.com/JohnFajardo',
-  coverletter: 'Lorem ipsum dolor sit amet',
-  education: 'Bachelors degree in journalism',
-  collegemajor: 'Journalism',
-  collegelocation: 'Caracas, Venezuela',
-  isemployed: false,
-  employer: 'N/A',
-  military: false,
-  income: '$0-$25,000',
-  laptop: true,
-  whyinterested: 'Because I need a job',
-  howheard: 'Heard in Google',
-  skilllevel: 'Intermediate',
-  createdAt: new Date(),
-  updatedAt: new Date(),
-};
-
+import axios from 'axios';
 class SubmittedForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      student: '',
-    };
+  state = {
+    applicantObj: '',
+  };
+  async componentDidMount() {
+    const applicantId = this.props.match.params.id;
+
+    const { data } = await axios.get(
+      `http://localhost:3000/applications/${applicantId}`
+    );
+    this.setState({
+      applicantObj: data,
+    });
   }
-  componentDidMount() {
-    /**API call or method to grab student information */
+  render() {
+    let applicant = this.state.applicantObj;
+    return (
+      <div className="submission">
+        <div className="field">
+          <b>Name:</b> {applicant.name}
+        </div>
+        <div className="field">
+          <b>Email:</b> {applicant.email}
+        </div>
+        <div className="field">
+          <b>Phone Number:</b> {applicant.phone}
+        </div>
+        <div className="field">
+          <b>Address:</b>
+          {applicant.address}
+        </div>
+        <div className="field">
+          {' '}
+          <b>City:</b> {applicant.city}
+        </div>
+        <div className="field">
+          <b>State:</b>
+          {applicant.state}
+        </div>
+        <div className="field">
+          <b>Zip Code:</b> {applicant.zip}
+        </div>
+        <div className="field">
+          <b>Birthdate: </b>
+          {applicant.birth_date}
+        </div>
+        <div className="field">
+          <b>Gender: </b> {applicant.gender}
+        </div>
+        <div className="field">
+          <b>Ethnicity/Race:</b> {applicant.ethnicity}
+        </div>
+        <div className="field">
+          <b>LinkedIn:</b> {applicant.linkedin}
+        </div>
+        <div className="field">
+          <b>Github:</b> {applicant.github}
+        </div>
+        <div className="field">
+          <b>Website:</b> {applicant.extra_link}
+        </div>
+        <div className="field">
+          <b>Cover Letter: </b>
+          {applicant.cover_letter}
+        </div>
+        <div className="field">
+          <b>Highest Degree: </b>
+          {applicant.highest_degree}
+        </div>
+        <div className="field">
+          <b>College Major:</b> {applicant.college_major}
+        </div>
+        <div className="field">
+          <b>University/College: </b>
+          {applicant.college_location}
+        </div>
+        <div className="field">
+          <b>Employed?:</b>
+          {applicant.is_employed}
+        </div>
+        <div className="field">
+          <b>Employer:</b>
+          {applicant.employer}
+        </div>
+        <div className="field">
+          <b>Military?:</b>
+          {applicant.is_military}
+        </div>
+        <div className="field">
+          <b>Income:</b>
+          {applicant.income}
+        </div>
+        <div className="field">
+          <b>Owns a laptop?{applicant.has_laptop}</b>
+        </div>
+        <div className="field">
+          <b>Reason for Applying to Inclusion: </b>
+          {applicant.why_interested}
+        </div>
+        <div className="field">
+          <b> Heard About Inclusion Through: {applicant.how_heard} </b>
+        </div>
+        <div className="field">
+          <b> Skill Level:</b>
+          {applicant.skill_level}
+        </div>
+      </div>
+    );
   }
 }
 

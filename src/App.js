@@ -20,6 +20,7 @@ class App extends Component {
           <Route path="/form-create" component={Forms} />
           <Route path="/form-submitted" component={SubmittedForm} />
           <Route path="/feed" component={Feed} />
+          <Route path="/applicants/:id" component={SubmittedForm} />
         </div>
       </BrowserRouter>
     );
