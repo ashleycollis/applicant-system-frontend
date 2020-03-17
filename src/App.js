@@ -1,13 +1,12 @@
-
-import React, { Component } from "react";
-import NavBar from "./Components/NavBar";
-import Forms from "./Components/Forms";
-import LogIn from "./Components/LogIn";
-import Feed from "./Components/Feed";
-import SubmittedForm from "./Components/SubmittedForm";
-import ApplicantRecap from "./Components/ApplicantRecap";
-import { BrowserRouter, Route } from "react-router-dom";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import React, { Component } from 'react';
+import NavBar from './Components/NavBar';
+import Forms from './Components/Forms';
+import LogIn from './Components/LogIn';
+import Feed from './Components/Feed';
+import SubmittedForm from './Components/SubmittedForm';
+import ApplicantRecap from './Components/ApplicantRecap';
+import { BrowserRouter, Route } from 'react-router-dom';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
   render() {
@@ -23,10 +22,9 @@ class App extends Component {
 
           <Route path="/recap" component={ApplicantRecap} />
           <Route path="/form-submitted" component={SubmittedForm} />
-
+          <Route path="/applicants/:id" component={SubmittedForm} />
 
           <Route path="/feed" component={Feed} />
-          
         </div>
       </BrowserRouter>
     );

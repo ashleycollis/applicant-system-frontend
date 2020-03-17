@@ -10,6 +10,11 @@
   border: 8px solid #5b7fa2;
 }
 
+.edit-form {
+  display: flex;
+  flex-direction: column;
+}
+
 div.applicant-row {
   font-size: 25px;
 }

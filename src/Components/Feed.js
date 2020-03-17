@@ -26,7 +26,6 @@ class Feed extends Component {
               <TableCell>Application Status</TableCell>
 
               <TableCell>Reviewer Comments</TableCell>
-              <TableCell>Modify</TableCell>
               <TableCell>Application View</TableCell>
             </TableRow>
           </TableHead>
