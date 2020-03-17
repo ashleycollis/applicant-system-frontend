@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { TableRow, TableCell } from '@material-ui/core';
+import { EditTwoTone } from '@material-ui/icons';
 
 class ApplicantRow extends Component {
   state = {
@@ -15,6 +16,9 @@ class ApplicantRow extends Component {
       applicantObj: data,
     });
   }
+  edit() {
+    console.log('need to put a function to edit post here');
+  }
 
   handleClick(e) {
     e.preventDefault();
@@ -27,6 +31,7 @@ class ApplicantRow extends Component {
         <TableCell className="applicant-column">{name}</TableCell>
         <TableCell className="applicant-column"> {app_status}</TableCell>
         <TableCell className="applicant-column">{reviewer_comments}</TableCell>
+        <EditTwoTone onClick={() => this.edit} />
         <TableCell className="applicant-column">
           <Link to={`/applicants/${id}`}>
             <button type="button">View Application</button>

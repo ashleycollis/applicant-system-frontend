@@ -1,59 +1,66 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Form,
   Button,
   FormControl,
   Row,
   Col,
-  InputGroup
-} from "react-bootstrap";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import axios from "axios";
+  InputGroup,
+} from 'react-bootstrap';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import axios from 'axios';
 //import Datepicker from "react-bootstrap-date-picker";
 // import ControlLabel from "react-bootstrap/InputGroup";
 // import FormCheck from "react-bootstrap/FormCheck";
 // import ControlLabel from "react-bootstrap/lib/ControlLabel";
+
 import { Redirect } from "react-router-dom";
 import { withRouter } from "react-router";
 // import ApplicantRecap from "./ApplicantRecap";
+
 
 class Forms extends Component {
   constructor() {
     super();
     this.state = {
       // cohort_id: "",
-      name: "",
-      email: "",
-      phone: "",
-      address: "",
-      city: "",
-      state: "",
-      zip: "",
-      birth_date: "",
-      gender: "",
-      ethnicity: "",
-      linkedin: "",
-      github: "",
-      extra_link: "",
-      cover_letter: "",
-      highest_degree: "",
-      college_major: "",
-      college_location: "",
+      name: '',
+      email: '',
+      phone: '',
+      address: '',
+      city: '',
+      state: '',
+      zip: '',
+      birth_date: '',
+      gender: '',
+      ethnicity: '',
+      linkedin: '',
+      github: '',
+      extra_link: '',
+      cover_letter: '',
+      highest_degree: '',
+      college_major: '',
+      college_location: '',
       is_employed: false,
-      employer: "",
+      employer: '',
       is_military: false,
-      income: "",
+      income: '',
       has_laptop: false,
-      why_interested: "",
-      how_heard: "",
-      skill_level: "",
-      app_status: "",
-      reviewer_comments: ""
+      why_interested: '',
+      how_heard: '',
+      skill_level: '',
+      app_status: '',
+      reviewer_comments: '',
       // redirect: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  componentDidMount() {
+    this.setState({ cohort_id: this.props.location.state.cohort_id });
+}
+
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -65,6 +72,7 @@ class Forms extends Component {
   async handleSubmit(event) {
     event.preventDefault();
     const applicantData = this.state;
+
     // console.log(applicantData);
     const newData = await axios
       .post("http://localhost:3000/applications", applicantData)
@@ -72,7 +80,9 @@ class Forms extends Component {
         console.log(err);
         return null;
       });
+
     console.log(newData.data);
+
     this.props.history.push("/recap");
 
     return (
@@ -93,7 +103,7 @@ class Forms extends Component {
   handleDate = date => {
     // let dbFriendlyDate = date.toISOString();
     this.setState({
-      birth_date: date
+      birth_date: date,
     });
   };
 
