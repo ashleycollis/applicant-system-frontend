@@ -56,6 +56,11 @@ class Forms extends Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  componentDidMount() {
+    this.setState({ cohort_id: this.props.location.state.cohort_id });
+}
+
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
