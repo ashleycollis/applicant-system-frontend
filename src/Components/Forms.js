@@ -71,7 +71,7 @@ class Forms extends Component {
       applicantData
     );
     console.log(newData.data);
-    this.props.history.push("/recap");
+    // this.props.history.push("/recap");
 
     return (
       <Redirect

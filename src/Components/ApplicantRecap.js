@@ -7,6 +7,7 @@ class ApplicantRecap extends Component {
   };
   async componentDidMount() {
     const applicantId = this.props.location.state.id;
+    console.log(this.props.location);
 
     const { data } = await axios.get(
       `http://localhost:3000/applications/${applicantId}`
@@ -20,6 +21,9 @@ class ApplicantRecap extends Component {
     let applicant = this.state.applicantObj;
     return (
       <div className="submission">
+        <h1>
+          Thank you for your submission. Here is a recap of your application:
+        </h1>
         <div className="field">
           <b>Name:</b> {applicant.name}
         </div>
