@@ -65,23 +65,25 @@ class Forms extends Component {
   async handleSubmit(event) {
     event.preventDefault();
     const applicantData = this.state;
-    // console.log(applicantData);
-    const newData = await axios
-      .post("http://localhost:3000/applications", applicantData)
-      .catch(err => {
-        console.log(err);
-        return null;
-      });
+    console.log(applicantData);
+    const newData = await axios.post(
+      "http://localhost:3000/applications",
+      applicantData
+    );
+    // .catch(err => {
+    //   console.log(err);
+    //   return null;
+    // });
     console.log(newData.data);
     this.props.history.push("/recap");
 
     return (
       <Redirect
-        to="/recap"
-        // to={{
-        //   pathname: "/recap",
-        //   state: { id: newData.data.id }
-        // }}
+        // to="/recap"
+        to={{
+          pathname: "/recap",
+          state: { id: newData.data.id }
+        }}
       />
     );
   }
