@@ -4,6 +4,7 @@ import axios from 'axios';
 import { TableRow, TableCell } from '@material-ui/core';
 import { EditTwoTone } from '@material-ui/icons';
 import EditComment from '../Components/EditComment';
+import EditStatus from '../Components/EditStatus';
 
 class ApplicantRow extends Component {
   state = {
@@ -28,35 +29,42 @@ class ApplicantRow extends Component {
     this.setState({
       [evt.target.name]: evt.target.value,
     });
-    console.log(this.state);
+  };
+
+  handleStatusChange = async evt => {
+    const id = this.props.id;
+    let data = await axios.put(`http://localhost:3000/applications/${id}`, {
+      app_status: evt.target.value,
+    });
+    this.setState({
+      applicantObj: data.data,
+    });
   };
 
   handleSubmit = async evt => {
     evt.preventDefault();
-    console.log('hit me');
     const id = this.props.id;
-    try {
-      let data = await axios.put(`http://localhost:3000/applications/${id}`, {
-        reviewer_comments: this.state.editValue,
-      });
-      console.log('WOOPEE', data.data);
-      this.setState({
-        isEditing: false,
-        applicantObj: data.data,
-      });
-    } catch (err) {
-      this.setState({
-        errorMessage: `There was a problem updating the todo: ${err.message}`,
-      });
-    }
+    let data = await axios.put(`http://localhost:3000/applications/${id}`, {
+      reviewer_comments: this.state.editValue,
+    });
+    this.setState({
+      isEditing: false,
+      applicantObj: data.data,
+    });
   };
 
   render() {
     const { name, reviewer_comments, app_status, id } = this.state.applicantObj;
+    console.log('this the', app_status);
     return (
       <TableRow className="applicant-row" key={id}>
         <TableCell className="applicant-column">{name}</TableCell>
-        <TableCell className="applicant-column"> {app_status}</TableCell>
+        <TableCell className="applicant-column">
+          <EditStatus
+            status={app_status}
+            handleChange={this.handleStatusChange}
+          />
+        </TableCell>
 
         {this.state.isEditing ? (
           <TableCell className="applicant-column">
@@ -73,17 +81,6 @@ class ApplicantRow extends Component {
           </TableCell>
         )}
 
-        {/* {this.state.isEditing ? (
-          <TableCell className="applicant-column">
-            <EditComment
-              handleChange={this.handleChange}
-              handleSubmit={this.handleSubmit}
-              editValue={reviewer_comments}
-            />
-          </TableCell>
-        ) : (
-          <EditTwoTone onClick={() => this.edit(reviewer_comments)} />
-        )} */}
         <TableCell className="applicant-column">
           <Link to={`/applicants/${id}`}>
             <button type="button" class="btn btn-primary">

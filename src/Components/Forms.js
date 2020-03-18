@@ -53,6 +53,11 @@ class Forms extends Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  componentDidMount() {
+    this.setState({ cohort_id: this.props.location.state.cohort_id });
+  }
+
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
@@ -94,14 +99,28 @@ class Forms extends Component {
     //   redirect: true
     // };
     const applicantData = this.state;
-    console.log(applicantData);
-    const newData = await axios.post(
-      'http://localhost:3000/applications',
-      applicantData
-    );
+
+    // console.log(applicantData);
+    const newData = await axios
+      .post('http://localhost:3000/applications', applicantData)
+      .catch(err => {
+        console.log(err);
+        return null;
+      });
+
     console.log(newData.data);
-    this.props.history.push('/submitted');
-    return <Redirect to="/submitted" />;
+
+    this.props.history.push('/recap');
+
+    return (
+      <Redirect
+        to="/recap"
+        // to={{
+        //   pathname: "/recap",
+        //   state: { id: newData.data.id }
+        // }}
+      />
+    );
   }
 
   handleEthnicity = event => {

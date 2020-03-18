@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import axios from 'axios';
 class SubmittedForm extends Component {
@@ -94,7 +93,8 @@ class SubmittedForm extends Component {
           {applicant.income}
         </div>
         <div className="field">
-          <b>Owns a laptop?{applicant.has_laptop}</b>
+          <b>Owns a laptop? </b>
+          {applicant.has_laptop ? 'Yes' : 'No'}
         </div>
         <div className="field">
           <b>Reason for Applying to Inclusion: </b>
