@@ -8,7 +8,7 @@ export default class ListCohorts extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:3000/cohorts')
+        fetch('http://app-api-server.herokuapp.com/cohorts')
             .then(res => res.json())
             .then(cohorts => this.setState({ cohorts }))
     }

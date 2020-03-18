@@ -8,7 +8,7 @@ class Feed extends Component {
     forms: [],
   };
   async componentDidMount() {
-    const { data } = await axios.get('http://localhost:3000/applications/');
+    const { data } = await axios.get('http://app-api-server.herokuapp.com/applications/');
     this.setState({
       forms: data,
     });

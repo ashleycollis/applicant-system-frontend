@@ -8,7 +8,7 @@ class SubmittedForm extends Component {
     const applicantId = this.props.match.params.id;
 
     const { data } = await axios.get(
-      `http://localhost:3000/applications/${applicantId}`
+      `http://app-api-server.herokuapp.com/applications/${applicantId}`
     );
     this.setState({
       applicantObj: data,

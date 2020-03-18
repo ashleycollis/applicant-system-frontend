@@ -72,7 +72,7 @@ class Forms extends Component {
     delete applicantData.redirect;
     // console.log(applicantData);
     const newData = await axios
-      .post('http://localhost:3000/applications', applicantData)
+      .post('http://app-api-server.herokuapp.com/applications', applicantData)
       .catch(err => {
         console.log(err);
         return null;

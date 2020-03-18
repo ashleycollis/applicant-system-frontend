@@ -13,7 +13,7 @@ class ApplicantRow extends Component {
 
   async componentDidMount() {
     const { data } = await axios.get(
-      `http://localhost:3000/applications/${this.props.id}`
+      `http://app-api-server.herokuapp.com/applications/${this.props.id}`
     );
     this.setState({
       applicantObj: data,
@@ -33,7 +33,7 @@ class ApplicantRow extends Component {
 
   handleStatusChange = async evt => {
     const id = this.props.id;
-    let data = await axios.put(`http://localhost:3000/applications/${id}`, {
+    let data = await axios.put(`http://app-api-server.herokuapp.com/applications/${id}`, {
       app_status: evt.target.value,
     });
     this.setState({
@@ -44,7 +44,7 @@ class ApplicantRow extends Component {
   handleSubmit = async evt => {
     evt.preventDefault();
     const id = this.props.id;
-    let data = await axios.put(`http://localhost:3000/applications/${id}`, {
+    let data = await axios.put(`http://app-api-server.herokuapp.com/applications/${id}`, {
       reviewer_comments: this.state.editValue,
     });
     this.setState({
@@ -75,11 +75,11 @@ class ApplicantRow extends Component {
             />
           </TableCell>
         ) : (
-          <TableCell className="applicant-column">
-            {reviewer_comments}{' '}
-            <EditTwoTone onClick={() => this.edit(reviewer_comments)} />
-          </TableCell>
-        )}
+            <TableCell className="applicant-column">
+              {reviewer_comments}{' '}
+              <EditTwoTone onClick={() => this.edit(reviewer_comments)} />
+            </TableCell>
+          )}
 
         <TableCell className="applicant-column">
           <Link to={`/applicants/${id}`}>

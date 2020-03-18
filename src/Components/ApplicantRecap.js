@@ -16,7 +16,7 @@ class ApplicantRecap extends Component {
     // const newId = this.setState(this.props.newId);
 
     const { data } = await axios.get(
-      `http://localhost:3000/applications/${applicantId}`
+      `http://app-api-server.herokuapp.com/${applicantId}`
     );
     this.setState({
       applicantObj: data,
