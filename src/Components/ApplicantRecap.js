@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router";
-import axios from "axios";
+import React, { Component } from 'react';
+import { withRouter } from 'react-router';
+import axios from 'axios';
 
 class ApplicantRecap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      applicantObj: ""
+      applicantObj: '',
     };
   }
   async componentDidMount() {
@@ -19,7 +19,7 @@ class ApplicantRecap extends Component {
       `http://localhost:3000/applications/${applicantId}`
     );
     this.setState({
-      applicantObj: data
+      applicantObj: data,
     });
   }
 
@@ -44,7 +44,7 @@ class ApplicantRecap extends Component {
           {applicant.address}
         </div>
         <div className="field">
-          {" "}
+          {' '}
           <b>City:</b> {applicant.city}
         </div>
         <div className="field">
@@ -89,23 +89,25 @@ class ApplicantRecap extends Component {
           {applicant.college_location}
         </div>
         <div className="field">
-          <b>Employed?:</b>
-          {applicant.is_employed}
+          <b>Owns a laptop? </b>
+          {applicant.is_employed ? 'Yes' : 'No'}
         </div>
         <div className="field">
           <b>Employer:</b>
           {applicant.employer}
         </div>
+        {/*Some fields written as conditionals to deal with boolean 'false' value not displaying anything*/}
         <div className="field">
-          <b>Military?:</b>
-          {applicant.is_military}
+          <b>Owns a laptop? </b>
+          {applicant.is_military ? 'Yes' : 'No'}
         </div>
         <div className="field">
           <b>Income:</b>
           {applicant.income}
         </div>
         <div className="field">
-          <b>Owns a laptop?{applicant.has_laptop}</b>
+          <b>Owns a laptop? </b>
+          {applicant.has_laptop ? 'Yes' : 'No'}
         </div>
         <div className="field">
           <b>Reason for Applying to Inclusion: </b>
