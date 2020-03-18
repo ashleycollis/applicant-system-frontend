@@ -6,23 +6,21 @@ class ApplicantRecap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newData: "",
       applicantObj: ""
     };
   }
   async componentDidMount() {
-    // const applicantId = this.props.location.state.id;
+    const applicantId = this.props.location.state.id;
     // console.log(applicantId);
-    console.log(this.props.state.location);
-    // const applicant = this.setState(this.props.location.state.newData);
-    // const id = applicant.data.id;
+    // console.log(this.props.state.location);
+    // const newId = this.setState(this.props.newId);
 
-    // const { data } = await axios.get(
-    //   `http://localhost:3000/applications/${id}`
-    // );
-    // this.setState({
-    //   applicantObj: data
-    // });
+    const { data } = await axios.get(
+      `http://localhost:3000/applications/${applicantId}`
+    );
+    this.setState({
+      applicantObj: data
+    });
   }
 
   render() {

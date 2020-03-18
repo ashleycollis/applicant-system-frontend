@@ -49,8 +49,8 @@ class Forms extends Component {
       how_heard: "",
       skill_level: "",
       app_status: "",
-      reviewer_comments: ""
-      // redirect: false
+      reviewer_comments: "",
+      redirect: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -65,27 +65,22 @@ class Forms extends Component {
   async handleSubmit(event) {
     event.preventDefault();
     const applicantData = this.state;
-    console.log(applicantData);
-    const newData = await axios.post(
-      "http://localhost:3000/applications",
-      applicantData
-    );
-    // .catch(err => {
-    //   console.log(err);
-    //   return null;
-    // });
+    delete applicantData.redirect;
+    // console.log(applicantData);
+    const newData = await axios
+      .post("http://localhost:3000/applications", applicantData)
+      .catch(err => {
+        console.log(err);
+        return null;
+      });
     console.log(newData.data);
-    this.props.history.push("/recap");
+    // this.props.history.push("/recap");
+    console.log("id is: " + newData.data.id);
 
-    return (
-      <Redirect
-        // to="/recap"
-        to={{
-          pathname: "/recap",
-          state: { id: newData.data.id }
-        }}
-      />
-    );
+    this.setState({
+      redirect: true,
+      newId: newData.data.id
+    });
   }
 
   handleEthnicity = event => {
@@ -99,7 +94,7 @@ class Forms extends Component {
     });
   };
 
-  render() {
+  mainBodyForm() {
     return (
       <div>
         <h2>Application Form</h2>
@@ -446,6 +441,20 @@ class Forms extends Component {
         </Form>
       </div>
     );
+  }
+  render() {
+    if (this.state.redirect) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/recap",
+            state: { id: this.state.newId }
+          }}
+        />
+      );
+    } else {
+      return this.mainBodyForm();
+    }
   }
 }
 export default withRouter(Forms);
