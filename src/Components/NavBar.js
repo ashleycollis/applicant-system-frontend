@@ -7,18 +7,18 @@ class NavBar extends Component {
   render() {
     return (
       <>
-      <Navbar bg="light" variant="light">
+        <Navbar bg="light" variant="light">
           <div className="container">
-        <Navbar.Brand href="/">
-          <img src="images/inclusion-logo-retina.png" width="150" height="25" className="d-inline-block align-top" alt="Inclusion" />
-        </Navbar.Brand>
-        <Navbar.Toggle />
-        <Navbar.Collapse className="justify-content-end">
-          <Nav.Link href="#">Applicant</Nav.Link>
-          <Nav.Link href="/login">Admin</Nav.Link>
-        </Navbar.Collapse>
-        </div>
-      </Navbar>
+            <Navbar.Brand href="/">
+              <img src="images/inclusion-logo-retina.png" width="150" height="25" className="d-inline-block align-top" alt="Inclusion" />
+            </Navbar.Brand>
+            <Navbar.Toggle />
+            <Navbar.Collapse className="justify-content-end">
+              <Nav.Link href="#">Apply!</Nav.Link>
+              <Nav.Link href="/login">Admin</Nav.Link>
+            </Navbar.Collapse>
+          </div>
+        </Navbar>
       </>
     );
   }
