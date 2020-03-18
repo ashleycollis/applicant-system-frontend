@@ -15,9 +15,6 @@ class App extends Component {
       <BrowserRouter>
         <NavBar />
         <div className="container">
-          <div className="page-header">
-            <h1>Improve your skills & launch your career in tech!</h1>
-          </div>
           <Route path="/login" exact={true} component={LogIn} />
           <Route path="/feed" exact={true} component={Feed} />
           <Route path="/form-create" component={Forms} />
