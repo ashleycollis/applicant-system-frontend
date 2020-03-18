@@ -9,14 +9,14 @@ export default class ListCohorts extends Component {
 
     componentDidMount() {
         fetch('http://localhost:3000/cohorts')
-        .then(res => res.json())
-        .then(cohorts => this.setState({cohorts}))
+            .then(res => res.json())
+            .then(cohorts => this.setState({ cohorts }))
     }
 
     listCohorts = () => {
         return this.state.cohorts.map(cohort => {
             return (
-            <li key={cohort.id}><Link to={{ pathname: "/form-create", state: { cohort_id: cohort.id } }}>{cohort.cohort_nickname}</Link></li>
+                <li key={cohort.id}><Link to={{ pathname: "/form-create", state: { cohort_id: cohort.id } }}>{cohort.cohort_nickname}</Link></li>
             )
         });
     }

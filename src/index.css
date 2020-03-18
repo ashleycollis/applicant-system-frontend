@@ -32,3 +32,57 @@ div.applicant-row {
 .loginlabel {
   font-size: 20px;
 }
+
+footer {
+  width: 100%;
+  background-color: #363839;
+}
+
+footer img {
+  max-width: 150px;
+}
+.bottom-links {
+  list-style-type: none;
+}
+
+.bottom-links li {
+  border-bottom: 1px solid #555;
+  height:35px;
+  padding-top: 10px;
+}
+
+.profile {
+  max-width: 100px;
+}
+
+.centered-img {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+blockquote {
+  background-color: #eee;
+  padding: 15px;
+  margin-top: 30px;
+}
+
+blockquote p {
+  font-size: 15px;
+  font-style: italic;
+}
+
+hr.style15 {
+	border-top: 4px double #eee;
+	text-align: center;
+}
+hr.style15:after {
+	content: '\002665';
+	display: inline-block;
+	position: relative;
+	top: -15px;
+	padding: 0 10px;
+	background: #f0f0f0;
+	color: #8c8b8b;
+	font-size: 18px;
+}

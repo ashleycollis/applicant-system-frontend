@@ -14,7 +14,7 @@ class NavBar extends Component {
             </Navbar.Brand>
             <Navbar.Toggle />
             <Navbar.Collapse className="justify-content-end">
-              <Nav.Link href="#">Apply!</Nav.Link>
+              <Nav.Link href="#">Apply</Nav.Link>
               <Nav.Link href="/login">Admin</Nav.Link>
             </Navbar.Collapse>
           </div>

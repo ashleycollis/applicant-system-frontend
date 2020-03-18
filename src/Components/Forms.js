@@ -21,7 +21,6 @@ class Forms extends Component {
   constructor() {
     super();
     this.state = {
-      // cohort_id: "",
       name: '',
       email: '',
       phone: '',
@@ -44,15 +43,12 @@ class Forms extends Component {
       is_military: false,
       income: '',
       has_laptop: false,
-
       why_interested: "",
       how_heard: "",
       skill_level: "",
       app_status: "",
       reviewer_comments: "",
       redirect: false
-
-
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -71,36 +67,6 @@ class Forms extends Component {
 
   async handleSubmit(event) {
     event.preventDefault();
-    // const applicantData = {
-    //   name: this.state.name,
-    //   email: this.state.email,
-    //   phone: this.state.phone,
-    //   address: this.state.address,
-    //   city: this.state.city,
-    //   state: this.state.state,
-    //   zip: this.state.zip,
-    //   birth_date: this.state.birth_date,
-    //   gender: this.state.gender,
-    //   ethnicity: this.state.ethnicity,
-    //   linkedin: this.state.linkedin,
-    //   github: this.state.github,
-    //   extra_link: this.state.extra_link,
-    //   cover_letter: this.state.cover_letter,
-    //   highest_degree: this.state.highest_degree,
-    //   college_major: this.state.college_major,
-    //   college_location: this.state.college_location,
-    //   is_employed: this.state.is_employed,
-    //   employer: this.state.employer,
-    //   is_military: this.state.is_military,
-    //   income: this.state.income,
-    //   has_laptop: this.state.has_laptop,
-    //   why_interested: this.state.why_interested,
-    //   how_heard: this.state.how_heard,
-    //   skill_level: this.state.skill_level,
-    //   app_status: this.state.app_status,
-    //   reviewer_comments: this.state.reviewer_comments,
-    //   redirect: true
-    // };
     const applicantData = this.state;
 
     delete applicantData.redirect;
@@ -129,7 +95,6 @@ class Forms extends Component {
   };
 
   handleDate = date => {
-    // let dbFriendlyDate = date.toISOString();
     this.setState({
       birth_date: date,
     });
@@ -238,8 +203,7 @@ class Forms extends Component {
                   <option>Choose...</option>
                   <option>Female</option>
                   <option>Male</option>
-                  <option>Binary</option>
-                  <option>Other</option>
+                  <option>Other/non-binary</option>
                 </Form.Control>
               </Form.Group>
             </Form.Row>
@@ -260,7 +224,7 @@ class Forms extends Component {
                   <Form.Check
                     type="radio"
                     label="African American"
-                    Value="African American"
+                    value="African American"
                     name="formHorizontalRadios"
                     id="formHorizontalRadios2"
                     onChange={this.handleEthnicity}
@@ -268,7 +232,7 @@ class Forms extends Component {
                   <Form.Check
                     type="radio"
                     label="Asian"
-                    Value="Asian"
+                    value="Asian"
                     name="formHorizontalRadios"
                     id="formHorizontalRadios3"
                     onChange={this.handleEthnicity}
