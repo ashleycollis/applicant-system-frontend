@@ -13,6 +13,7 @@ class Feed extends Component {
       forms: data,
     });
   }
+
   render() {
     let { forms } = this.state;
     if (forms.length) {
@@ -25,7 +26,6 @@ class Feed extends Component {
               <TableCell>Application Status</TableCell>
 
               <TableCell>Reviewer Comments</TableCell>
-
               <TableCell>Application View</TableCell>
             </TableRow>
           </TableHead>
