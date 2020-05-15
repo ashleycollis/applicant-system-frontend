@@ -13,7 +13,7 @@ A web app for Inclusion's admissions team to retrieve and organize submissions.
 - Then run the migrations by running `knex migrate:latest`
 - Then seed the database with `knex seed:run`
 - Finally, run the server by running `npm start`
-- Open [http://localhost:3001](http://localhost:3001) to view it in the browser.
+- Open [http://localhost:3001](http://localhost:3001) to view it in the browser
 
 ## Testing
 
