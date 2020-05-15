@@ -23,4 +23,7 @@ A web app for Inclusion's admissions team to retrieve and organize submissions.
 
 - Ashley Collis-Burgess
 - Jennie Wong
-- John Fajardo
+- # John Fajardo
+- npm install
+- npm start
+- Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
